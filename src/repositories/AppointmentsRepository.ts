@@ -24,6 +24,7 @@ class AppointmentsRepository {
   }
 
   public create({provider, date}: CreateAppointmentDTO): Appointment {
+    // DTO = Data Transfer Object
     const appointment = new Appointment({provider, date})
 
     this.appointments.push(appointment)
