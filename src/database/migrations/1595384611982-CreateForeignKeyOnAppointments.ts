@@ -1,9 +1,9 @@
-import { MigrationInterface, QueryRunner, TableForeignKey } from "typeorm";
+import { MigrationInterface, QueryRunner, TableForeignKey, TableColumn } from "typeorm";
 
 export class CreateForeignKeyOnAppointments1595384611982
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.createForeignKey(
+    await queryRunner.createForeignKey(
       "appointments",
       new TableForeignKey({
         name: 'AppointmentProvider',
