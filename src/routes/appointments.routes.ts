@@ -1,13 +1,14 @@
 import { Router } from "express";
-
-import { startOfHour, parseISO } from "date-fns";
-
-import AppointmentsRepository from "./../repositories/AppointmentsRepository";
-
-import CreateAppointmentService from "./../services/CreateAppointmentService";
+import { parseISO } from "date-fns";
 import { getCustomRepository } from "typeorm";
 
+import AppointmentsRepository from "./../repositories/AppointmentsRepository";
+import CreateAppointmentService from "./../services/CreateAppointmentService";
+import ensureAuthenticated from './../middlewares/ensureAuthenticated'
+
 const appointmentsRouter = Router();
+
+appointmentsRouter.use(ensureAuthenticated)
 
 //SOC - Separation of Concerns
 appointmentsRouter.get("/", async (request, response) => {

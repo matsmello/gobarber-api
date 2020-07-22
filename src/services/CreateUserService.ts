@@ -7,7 +7,6 @@ interface Request {
   email: string;
   password: string;
 }
-
 class CreateUserService {
   public async execute({name, email, password}: Request): Promise<User> {
     const usersRepository = getRepository(User)
