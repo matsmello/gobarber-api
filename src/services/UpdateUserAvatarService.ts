@@ -3,6 +3,7 @@ import User from "../models/User";
 import fs from "fs";
 import path from "path";
 import uploadConfig from "./../config/upload";
+import AppError from "../errors/AppError";
 
 interface Request {
   user_id: string;
@@ -17,7 +18,10 @@ class UpdateUserAvatarService {
 
     // Verify if exists User
     if (!user) {
-      throw new Error("Only users authenticated can change avatar image.");
+      throw new AppError(
+        "Only users authenticated can change avatar image.",
+        401
+      );
     }
 
     // Verify if exists avatar
