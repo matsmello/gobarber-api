@@ -1,9 +1,9 @@
-import { getRepository } from "typeorm";
 import User from "@modules/users/infra/typeorm/entities/User";
 import fs from "fs";
 import path from "path";
 import uploadConfig from "@config/upload";
 import AppError from "@shared/errors/AppError";
+import IUsersRepository from "../repositories/IUsersRepository";
 
 interface IRequest {
   user_id: string;
@@ -11,10 +11,10 @@ interface IRequest {
 }
 
 class UpdateUserAvatarService {
+  constructor(private usersRepository: IUsersRepository) {}
+
   public async execute({ user_id, avatarFilename }: IRequest): Promise<User> {
-    // Get User
-    const usersRepository = await getRepository(User);
-    const user = await usersRepository.findOne(user_id);
+    const user = await this.usersRepository.findById(user_id);
 
     // Verify if exists User
     if (!user) {
@@ -40,7 +40,7 @@ class UpdateUserAvatarService {
     // Save new image to user
     user.avatar = avatarFilename;
 
-    await usersRepository.save(user);
+    await this.usersRepository.save(user);
 
     return user;
   }
