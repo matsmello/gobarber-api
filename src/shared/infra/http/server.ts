@@ -3,10 +3,10 @@ import express, { NextFunction, Response, Request } from "express";
 import "express-async-errors";
 import cors from "cors";
 
-import routes from "./shared/routes";
-import uploadConfig from "./config/upload";
-import "./shared/database";
-import AppError from "./shared/errors/AppError";
+import routes from "./routes";
+import uploadConfig from "../../../config/upload";
+import "../typeorm";
+import AppError from "../../errors/AppError";
 
 const app = express();
 
