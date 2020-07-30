@@ -29,7 +29,7 @@ describe('CreateAppointment', () => {
 
     const appointmentDate = new Date();
 
-    const appointment = await createAppointment.execute({
+    await createAppointment.execute({
       date: appointmentDate,
       provider_id: '123123'
     })
