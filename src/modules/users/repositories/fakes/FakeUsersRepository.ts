@@ -28,6 +28,7 @@ class UsersRepository  implements IUsersRepository{
     const newUser = new User();
 
     Object.assign(newUser, { id: uuid() }, {email, password, name});
+    this.users.push(newUser)
 
     return newUser;
   }
