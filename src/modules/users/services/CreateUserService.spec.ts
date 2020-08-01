@@ -38,10 +38,10 @@ describe('CreateUser', () => {
       email: 'email@email.com'
     })
 
-    expect(createUserService.execute({
+    await expect(createUserService.execute({
       name: 'Matheus',
       password: '123123',
       email: 'email@email.com'
     })).rejects.toBeInstanceOf(AppError);
-})
+  })
 })
