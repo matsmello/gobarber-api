@@ -28,7 +28,7 @@ export default class EtherealMailProvider implements IMailProvider {
     });
   }
 
-  public async sendEmail({
+  public async sendMail({
     to,
     subject,
     from,
@@ -36,7 +36,7 @@ export default class EtherealMailProvider implements IMailProvider {
   }: ISendMailDTO): Promise<void> {
     const message = await this.client.sendMail({
       from: {
-        name: from?.name || 'Equipe Gobarber',
+        name: from?.name || 'Equipe GoBarber',
         address: from?.email || 'equipe@gobarber.com.br',
       },
       to: { name: to.name, address: to.email },
